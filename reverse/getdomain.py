@@ -10,5 +10,7 @@ def get_domain():
 		domain=r.json()['domain']
 		token=r.json()['token']
 	except:
+		domain=''
+		token=''
 		print("[!!!]	获取dnslog失败")
 	return (domain,token)
