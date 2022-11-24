@@ -1,12 +1,14 @@
 import socket
 import threading
 from threading import Thread
-import requests,re,argparse,sys,os
+import requests,re,argparse,sys,os,binascii
 import requests.packages.urllib3
 import subprocess
 from urllib.request import urlopen
 from hashlib import md5
 import base64
+import datetime
+from time import strftime
 import time
 from urllib import parse
 # import colorama
@@ -17,7 +19,7 @@ urllist=[]
 poclist=[]
 total_list=[]
 urlSepList=[]
-# num=0
+num=0
 def main():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-f', '--file', type=str,help=' url文件路径')
@@ -109,14 +111,18 @@ def multithreading(threadCount,total):
 
 def bp(target_list,total):
 	sys.path.insert(0,'pocs')
-	# global num
+	global num
 	for target in target_list:
-		# num+=1
+		
 		# try:
 		url=target[0]
 		poc=target[1]
 		if 'http' not in url:
 			url='http://'+url
+		if url[-1]=="/":
+			url=url
+		else:
+			url=url+"/"
 		pocname=poc.split('/')[1]
 		# print(pocname)
 		# from pocname import pocname
@@ -136,11 +142,12 @@ def bp(target_list,total):
 			else:
 				print(f'[!!!]	{url}   {pocname}	{e}')
 		# print(str(num)+'/'+str(total))
-		# mystr1 = "进度：" + str(num) + "/" + str(total)
-		# mystr2 ='百分比: {:.3f}%'.format(num/total*100)
-		# mystr=mystr1+'  '+mystr2
-		# print(mystr,end = ""),
-		# print("\b" * (len(mystr)*2),end = "",flush=True)
+		num+=1
+		mystr1 = "进度：" + str(num) + "/" + str(total)
+		mystr2 ='百分比: {:.3f}%'.format(num/total*100)
+		mystr=mystr1+'  '+mystr2
+		print(mystr,end = ""),
+		print("\b" * (len(mystr)*2),end = "",flush=True)
 def logo():
     print('''
    _____   _____            __  __                _         _____                    \r
