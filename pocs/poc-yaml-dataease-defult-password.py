@@ -15,7 +15,7 @@ def scan(baseurl):
 	body='{"username":"demo","password":"cjab9Eu0dkS5Veh/sqghbg33Qa/xnqBolObRpJLqeDetgR8quuGlCuvUWjq0sFtle9HYgC1ztMFUFd/rnp11Ug==","loginType":0}'
 	headers={'Content-Type': 'application/json'}
 	response=requests.post(url,body,headers=headers,timeout=5,verify=False)
-	if response.status_code == 200 and "success" in response.text and "true" in response.text:
+	if response.status_code == 200 and "success" in response.text and "true" in response.text and 'Authorization' in str(response.headers):
 		r0=True
 	else:
 		r0=False
