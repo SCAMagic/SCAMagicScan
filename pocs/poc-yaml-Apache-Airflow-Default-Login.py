@@ -9,7 +9,7 @@ def scan(baseurl):
 	url=baseurl
 	headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0"}
 	response=requests.get(url,headers=headers,timeout=5,verify=False)
-	if response.status_code == 200 and ('airflow' in response.text ir 'Airflow' in response.text):
+	if response.status_code == 200 and ('airflow' in response.text or 'Airflow' in response.text):
 		l0=True
 	else:
 		l0=False
