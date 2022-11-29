@@ -6,10 +6,10 @@ def scan(baseurl):
 		baseurl=baseurl
 	else:
 		baseurl=baseurl+"/"
-	url=baseurl+"login/"
+	url=baseurl
 	headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0"}
 	response=requests.get(url,headers=headers,timeout=5,verify=False)
-	if response.status_code == 200:
+	if response.status_code == 200 and ('airflow' in response.text ir 'Airflow' in response.text):
 		l0=True
 	else:
 		l0=False
@@ -78,6 +78,7 @@ def scan(baseurl):
 		r3=True
 	else:
 		r3=False
+	print(r0,r1,r2,r3)
 	if l0 and ((r0 and r1) or (r2 and r3)):
 		return True
 	else:
