@@ -78,7 +78,6 @@ def scan(baseurl):
 		r3=True
 	else:
 		r3=False
-	print(r0,r1,r2,r3)
 	if l0 and ((r0 and r1) or (r2 and r3)):
 		return True
 	else:
